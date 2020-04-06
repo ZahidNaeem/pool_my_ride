@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
-import 'package:poolmyride/book_delete.dart';
-import 'package:poolmyride/model/book.dart';
-import 'package:poolmyride/model/api_response.dart';
-import 'package:poolmyride/register_user.dart';
+import 'package:poolmyride/service/register_user.dart';
+
+import 'book_delete.dart';
+import 'model/api_response.dart';
+import 'model/book.dart';
 
 class CarOwner extends StatefulWidget {
   @override
@@ -14,7 +14,6 @@ class _CarOwnerState extends State<CarOwner> {
   bool _isLoading = false;
   List<Book> books = [];
   APIResponse<List<Book>> _apiResponse;
-  RegisterUser get service => GetIt.I<RegisterUser>();
 
   @override
   void initState() {
@@ -26,7 +25,7 @@ class _CarOwnerState extends State<CarOwner> {
     setState(() {
       _isLoading = true;
     });
-    _apiResponse = await service.getAllBooks();
+    _apiResponse = await RegisterUser.getAllBooks();
     setState(() {
       _isLoading = false;
     });

@@ -14,14 +14,13 @@ description: A new Flutter application for ride pooling
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.2.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  get_it: ^4.0.1
-  http: ^0.12.0+4
-  equatable: ^1.1.1
+  dio: ^3.0.9
+  flutter_secure_storage: ^3.3.2
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
