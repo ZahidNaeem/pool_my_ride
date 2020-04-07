@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:poolmyride/service/register_user.dart';
 
-import 'book_delete.dart';
-import 'model/api_response.dart';
-import 'model/book.dart';
+import '../book_delete.dart';
+import '../model/api_response.dart';
+import '../model/book.dart';
+import '../service/register_user.dart';
 
 class CarOwner extends StatefulWidget {
   @override

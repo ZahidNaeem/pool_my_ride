@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'service/register_user.dart';
+import 'package:poolmyride/service/register_user.dart';
 
 class RideSeeker extends StatefulWidget {
   @override

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:poolmyride/views/login.dart';
 
-import 'home.dart';
-
-void setupLocator() {
-}
+void setupLocator() {}
 
 void main() {
   setupLocator();
@@ -18,7 +16,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(title: 'Pool My Ride Home Page'),
+      // home: HomePage(title: 'Pool My Ride Home Page'),
+      home: Login(title: 'Pool My Ride Home Page'),
     );
   }
 }

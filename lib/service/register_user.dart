@@ -7,12 +7,11 @@ import 'package:poolmyride/model/api_response.dart';
 import 'package:poolmyride/model/book.dart';
 
 class RegisterUser {
-  static const BOOK_API = Constant.BOOK_API;
 
   static Future<APIResponse<List<Book>>> getAllBooks() async {
     final Options options = Options(method: 'GET');
     try {
-      var response = await APIUtils.request(path: BOOK_API, options: options);
+      var response = await APIUtils.request(path: Constant.API_BOOK_URL, options: options);
       final books = <Book>[];
       for (var item in response.data['entity']) {
         final book = Book(bookId: item['bookId'], bookName: item['bookName']);
@@ -31,7 +30,7 @@ class RegisterUser {
     final Options options = Options(method: 'POST');
     try {
       var response = await APIUtils.request(
-          path: BOOK_API,
+          path: Constant.API_BOOK_URL,
           data: json.encode(bookBody.toJson()),
           options: options);
       final book = Book.fromJson(response.data);
