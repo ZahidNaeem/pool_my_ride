@@ -51,7 +51,7 @@ class _LoginState extends State<Login> {
 
   void submitValue() async {
     final LoginRequest loginRequest = new LoginRequest(
-        username: usernameController.text, password: passwordController.text);
+        usernameOrEmail: usernameController.text, password: passwordController.text);
     await APIUtils.login(loginRequest);
     _showcontent();
   }
