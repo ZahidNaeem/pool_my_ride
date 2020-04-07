@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:poolmyride/views/login.dart';
 
-void setupLocator() {}
-
 void main() {
-  setupLocator();
   runApp(MyApp());
 }
 
