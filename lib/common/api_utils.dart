@@ -2,25 +2,24 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart'
-    as secureStorage;
 import 'package:poolmyride/common/constant.dart';
 import 'package:poolmyride/model/api_response.dart';
 
 class APIUtils {
   static Future<APIResponse> request(
       {@required final String path, Options options, dynamic data}) async {
-    final secureStorage.FlutterSecureStorage storage =
-        new secureStorage.FlutterSecureStorage();
-    String jwt = await storage.read(key: 'jwt');
+    final String jwt = await Constant.storage.read(key: 'jwt');
     final Dio dio = new Dio();
-    dio.options.baseUrl = Constant.ROOT_API;
-    final Map<String, String> headers = {
+    // dio.options.baseUrl = Constant.API_BASE_URL;
+    final Map<String, dynamic> headers = {
       'Content-Type': 'application/json',
       'Accept': 'application/json'
     };
 
-    headers.putIfAbsent('Authorization', 'Bearer ' + jwt);
+    if (jwt != null) {
+      headers['Authorization'] = 'Bearer ' + jwt;
+    }
+
     options.headers = headers;
     try {
       final Response response =
@@ -37,5 +36,27 @@ class APIUtils {
       print(e.toString());
       return APIResponse(error: true, errorMessage: e.toString());
     }
+  }
+
+  static Future<APIResponse> login() async {
+    final Options options = Options(method: 'POST');
+    var response = await APIUtils.request(
+        path: Constant.API_LOGIN_URL,
+        options: options,
+        data: {'usernameOrEmail': 'zahid', 'password': '111111'});
+    var data = response.data['entity']['accessToken'];
+    await Constant.storage.write(key: 'jwt', value: data);
+    return response;
+  }
+
+    static Future<APIResponse> signup() async {
+    final Options options = Options(method: 'POST');
+    var response = await APIUtils.request(
+        path: Constant.API_SIGNUP_URL,
+        options: options,
+        data: {'usernameOrEmail': 'zahid', 'password': '111111'});
+    var data = response.data['entity']['accessToken'];
+    await Constant.storage.write(key: 'jwt', value: data);
+    return response;
   }
 }
