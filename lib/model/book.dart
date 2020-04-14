@@ -2,22 +2,9 @@ class Book {
   int bookId;
   String bookName;
 
-  Book({this.bookId, this.bookName});
-
-  int get id {
-    return bookId;
-  }
-
-  set id(int id) {
-    this.bookId = id;
-  }
-
-  String get name {
-    return bookName;
-  }
-
-  set name(String name) {
-    this.bookName = name;
+  Book({final int bookId, final String bookName}){
+    this.bookId = bookId;
+    this.bookName = bookName;
   }
 
   factory Book.fromJson(Map<String, dynamic> json) {

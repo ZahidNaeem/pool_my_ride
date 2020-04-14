@@ -40,8 +40,8 @@ class _CarOwnerState extends State<CarOwner> {
             return Center(child: CircularProgressIndicator());
           }
 
-          if (_apiResponse.error) {
-            return Center(child: Text(_apiResponse.errorMessage));
+          if (_apiResponse.success) {
+            return Center(child: Text(_apiResponse.message));
           }
 
           return ListView.separated(
@@ -49,7 +49,7 @@ class _CarOwnerState extends State<CarOwner> {
                 Divider(height: 1, color: Colors.green),
             itemBuilder: (_, index) {
               return Dismissible(
-                key: ValueKey(_apiResponse.data[index].bookId),
+                key: ValueKey(_apiResponse.entity[index].bookId),
                 direction: DismissDirection.startToEnd,
                 onDismissed: (direction) {},
                 confirmDismiss: (direction) async {
@@ -68,13 +68,13 @@ class _CarOwnerState extends State<CarOwner> {
                 ),
                 child: ListTile(
                   title: Text(
-                    _apiResponse.data[index].bookName,
+                    _apiResponse.entity[index].bookName,
                     style: TextStyle(color: Theme.of(context).primaryColor),
                   ),
                 ),
               );
             },
-            itemCount: _apiResponse.data.length,
+            itemCount: _apiResponse.entity.length,
           );
         }));
   }
